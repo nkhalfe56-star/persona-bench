@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "persona-bench"
+version = "0.1.0"
+description = "Stress-test your AI app with synthetic user personas before you ship."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+  {name = "nkhalfe56-star"},
+]
+keywords = ["ai", "llm", "testing", "personas", "benchmark", "evaluation"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Software Development :: Testing",
+]
+dependencies = [
+  "openai>=1.14.0",
+  "pydantic>=2.0.0",
+  "streamlit>=1.32.0",
+  "plotly>=5.20.0",
+  "pandas>=2.0.0",
+  "typer[all]>=0.12.0",
+  "rich>=13.7.0",
+  "python-dotenv>=1.0.0",
+  "tqdm>=4.66.0",
+]
+
+[project.scripts]
+pb = "personabench.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/nkhalfe56-star/persona-bench"
+Repository = "https://github.com/nkhalfe56-star/persona-bench"
+Issues = "https://github.com/nkhalfe56-star/persona-bench/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["personabench*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I", "N", "W"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
